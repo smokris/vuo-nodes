@@ -1,0 +1,34 @@
+/**
+ * @file
+ * This composition does...
+ *
+ * @copyright Copyright © 2015 [smokris](https://vuo.org/user/9)
+ * @see This is a Vuo Composition source code file.  See http://vuo.org for further information.
+ */
+
+digraph G
+{
+ConvertTextToInteger3 [type="vuo.type.text.integer" version="1.0.0" label="Convert Text to Integer|<refresh>refresh\l|<text>text\l|<integer>integer\r" pos="495,360"];
+CountWithinRange [type="vuo.math.countWithinRange.VuoInteger" version="1.0.0" label="Count within Range|<refresh>refresh\l|<increment>increment\l|<decrement>decrement\l|<setCount>setCount\l|<minimum>minimum\l|<maximum>maximum\l|<wrapMode>wrapMode\l|<count>count\r" pos="105,315" _increment="1" _decrement="1" _setCount="0" _minimum="1" _maximum="9" _wrapMode="\"wrap\""];
+FirePeriodically [type="vuo.time.firePeriodically" version="1.0.2" label="Fire Periodically|<refresh>refresh\l|<seconds>seconds\l|<fired>fired\r" pos="-90,315" _seconds="0.100000" _fired_eventThrottling="drop"];
+MakeColorLayer [type="vuo.layer.make.color" version="1.1.0" label="Make Color Layer|<refresh>refresh\l|<name>name\l|<color>color\l|<center>center\l|<rotation>rotation\l|<width>width\l|<height>height\l|<layer>layer\r" pos="660,240" _name="\"\"" _rotation="0.0" _width="0.200000" _height="0.200000"];
+MakeList3 [type="vuo.list.make.1.VuoLayer" version="2.0.0" label="Make List|<refresh>refresh\l|<1>1\l|<list>list\r" pos="829,251" fillcolor="green"];
+MakeList5 [type="vuo.list.make.0.VuoWindowProperty" version="2.0.0" label="Make List|<refresh>refresh\l|<list>list\r" pos="859,266" fillcolor="green"];
+ManageSnapshots [type="smokris.snapshot" version="1.0.0" label="Manage Snapshots|<refresh>refresh\l|<takeSnapshot>takeSnapshot\l|<recallSnapshot>recallSnapshot\l|<color>color\l|<position>position\l|<recalledColor>recalledColor\r|<recalledPosition>recalledPosition\r" pos="390,255" _color="{\"r\":0.749996,\"g\":0.749996,\"b\":0.749996,\"a\":1.000000}"];
+ReceiveKeyboardTyping [type="vuo.keyboard.type" version="1.0.1" label="Receive Keyboard Typing|<refresh>refresh\l|<window>window\l|<typedLine>typedLine\r|<typedWord>typedWord\r|<typedCharacter>typedCharacter\r" pos="75,225" _typedLine_eventThrottling="enqueue" _typedWord_eventThrottling="enqueue" _typedCharacter_eventThrottling="enqueue"];
+ReceiveMouseMoves [type="vuo.mouse.move" version="1.0.3" label="Receive Mouse Moves|<refresh>refresh\l|<window>window\l|<modifierKey>modifierKey\l|<movedTo>movedTo\r" pos="105,450" _modifierKey="\"any\"" _movedTo_eventThrottling="drop"];
+RenderLayersToWindow [type="vuo.layer.render.window" version="2.3.0" label="Render Layers to Window|<refresh>refresh\l|<layers>layers\l|<setWindowProperties>setWindowProperties\l|<showedWindow>showedWindow\r|<requestedFrame>requestedFrame\r|<renderedLayers>renderedLayers\r" pos="900,240" fillcolor="green" _showedWindow_eventThrottling="enqueue" _requestedFrame_eventThrottling="drop"];
+
+ConvertTextToInteger3:integer -> ManageSnapshots:takeSnapshot;
+CountWithinRange:count -> ManageSnapshots:recallSnapshot;
+FirePeriodically:fired -> CountWithinRange:increment;
+MakeColorLayer:layer -> MakeList3:1;
+MakeList3:list -> RenderLayersToWindow:layers;
+MakeList5:list -> RenderLayersToWindow:setWindowProperties;
+ManageSnapshots:recalledColor -> MakeColorLayer:color;
+ManageSnapshots:recalledPosition -> MakeColorLayer:center;
+ReceiveKeyboardTyping:typedCharacter -> ConvertTextToInteger3:text;
+ReceiveMouseMoves:movedTo -> ManageSnapshots:position;
+RenderLayersToWindow:showedWindow -> ReceiveKeyboardTyping:window [style=invis];
+RenderLayersToWindow:showedWindow -> ReceiveMouseMoves:window [style=invis];
+}

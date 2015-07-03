@@ -1,0 +1,6 @@
+.DS_Store
+.qmake.cache
+.qmake.stash
+Makefile
+*.vuonode
+*.pro.user
