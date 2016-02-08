@@ -1,0 +1,52 @@
+/**
+ * @file
+ * This composition does...
+ *
+ * @copyright Copyright © 2016 [smokris](https://vuo.org/user/9)
+ * @see This is a Vuo Composition source code file.  See http://vuo.org for further information.
+ */
+
+digraph G
+{
+Combine3DObjects [type="vuo.scene.combine" version="1.0.0" label="Combine 3D Objects|<refresh>refresh\l|<transform>transform\l|<childObjects>childObjects\l|<object>object\r" pos="585,150"];
+Convert2DPointToReal [type="vuo.type.point2d.real.x" version="1.0.1" label="Convert 2D Point to Real|<refresh>refresh\l|<xy>xy\l|<x>x\r" pos="420,570"];
+ConvertRealTo3DPoint [type="vuo.type.real.point3d.y" version="1.0.1" label="Convert Real to 3D Point|<refresh>refresh\l|<y>y\l|<point3d>point3d\r" pos="600,90"];
+FireOnStart2 [type="vuo.event.fireOnStart" version="1.0.0" label="Fire on Start|<refresh>refresh\l|<started>started\r" pos="-60,165" fillcolor="yellow" _started_eventThrottling="enqueue"];
+Make3DTransform [type="vuo.transform.make" version="1.0.0" label="Make 3D Transform|<refresh>refresh\l|<translation>translation\l|<rotation>rotation\l|<scale>scale\l|<transform>transform\r" pos="390,90" _translation="{\"x\":0,\"y\":0,\"z\":0}" _scale="{\"x\":1,\"y\":1,\"z\":1}"];
+MakeIcosphere [type="vuo.scene.make.icosphere.VuoGenericType1" version="1.0.0" label="Make Icosphere|<refresh>refresh\l|<transform>transform\l|<material>material\l|<subdivisions>subdivisions\l|<object>object\r" pos="180,195" _subdivisions="1"];
+MakeList [type="vuo.list.make.2.VuoSceneObject" version="2.0.0" label="Make List|<refresh>refresh\l|<1>1\l|<2>2\l|<list>list\r" pos="769,161" fillcolor="green"];
+MakeList3 [type="vuo.list.make.1.VuoSceneObject" version="2.0.0" label="Make List|<refresh>refresh\l|<1>1\l|<list>list\r" pos="539,176"];
+MakeList4 [type="vuo.list.make.0.VuoWindowProperty" version="2.0.0" label="Make List|<refresh>refresh\l|<list>list\r" pos="799,191" fillcolor="green"];
+MakeList5 [type="vuo.list.make.2.VuoReal" version="2.0.0" label="Make List|<refresh>refresh\l|<1>1\l|<2>2\l|<list>list\r" pos="149,116" _2="10"];
+MakeTextImage [type="vuo.image.make.text" version="1.0.2" label="Make Text Image|<refresh>refresh\l|<text>text\l|<font>font\l|<image>image\r" pos="285,405" _text="\"Move the mouse to change the primitive type\"" _font="{\"fontName\":\"HelveticaNeue-Light\",\"pointSize\":48,\"underline\":false,\"color\":{\"r\":1,\"g\":1,\"b\":1,\"a\":1},\"alignment\":\"left\",\"characterSpacing\":1,\"lineSpacing\":1}"];
+MakeUnlit3DObjectFromImage [type="vuo.scene.make.image.unlit" version="2.0.0" label="Make Unlit 3D Object from Image|<refresh>refresh\l|<image>image\l|<center>center\l|<rotation>rotation\l|<width>width\l|<opacity>opacity\l|<object>object\r" pos="495,405" _center="{\"x\":0,\"y\":-0.64999997615814209,\"z\":0}" _rotation="{\"x\":0.0,\"y\":0.0,\"z\":0.0}" _width="1.0" _opacity="1.0"];
+Multiply [type="vuo.math.multiply.VuoReal" version="2.0.0" label="Multiply|<refresh>refresh\l|<values>values\l|<product>product\r" pos="195,105"];
+ReceiveMouseMoves [type="vuo.mouse.move" version="1.0.3" label="Receive Mouse Moves|<refresh>refresh\l|<window>window\l|<modifierKey>modifierKey\l|<movedTo>movedTo\r" pos="-75,285" fillcolor="yellow" _modifierKey="\"any\"" _movedTo_eventThrottling="drop"];
+Reinterpret3DObject2 [type="smokris.object.reinterpret" version="1.0.0" label="Reinterpret 3D Object|<refresh>refresh\l|<object>object\l|<primitiveType>primitiveType\l|<primitiveSize>primitiveSize\l|<reinterpretedObject>reinterpretedObject\r" pos="360,240" fillcolor="violet" _primitiveSize="0.02"];
+RenderSceneToWindow [type="vuo.scene.render.window" version="2.2.0" label="Render Scene to Window|<refresh>refresh\l|<objects>objects\l|<cameraName>cameraName\l|<setWindowProperties>setWindowProperties\l|<showedWindow>showedWindow\r|<requestedFrame>requestedFrame\r" pos="840,150" fillcolor="green" _showedWindow_eventThrottling="enqueue" _requestedFrame_eventThrottling="drop"];
+Round [type="vuo.math.round" version="2.0.0" label="Round|<refresh>refresh\l|<real>real\l|<rounded>rounded\r" pos="465,360"];
+Scale [type="vuo.math.scale.VuoReal" version="2.0.0" label="Scale|<refresh>refresh\l|<value>value\l|<start>start\l|<end>end\l|<scaledStart>scaledStart\l|<scaledEnd>scaledEnd\l|<scaledValue>scaledValue\r" pos="165,285" _start="-1" _end="1." _scaledStart="0." _scaledEnd="5"];
+ShareValue3 [type="vuo.data.share.VuoReal" version="1.0.0" label="Time|<refresh>refresh\l|<value>value\l|<sameValue>sameValue\r" pos="30,90" fillcolor="green"];
+
+Combine3DObjects:object -> MakeList:1;
+Convert2DPointToReal:x -> Scale:value;
+ConvertRealTo3DPoint:point3d -> Make3DTransform:rotation;
+FireOnStart2:started -> MakeIcosphere:refresh;
+FireOnStart2:started -> MakeTextImage:refresh;
+Make3DTransform:transform -> Combine3DObjects:transform;
+MakeIcosphere:object -> Reinterpret3DObject2:object;
+MakeList3:list -> Combine3DObjects:childObjects;
+MakeList4:list -> RenderSceneToWindow:setWindowProperties;
+MakeList5:list -> Multiply:values;
+MakeList:list -> RenderSceneToWindow:objects;
+MakeTextImage:image -> MakeUnlit3DObjectFromImage:image;
+MakeUnlit3DObjectFromImage:object -> MakeList:2;
+Multiply:product -> ConvertRealTo3DPoint:y;
+ReceiveMouseMoves:movedTo -> Convert2DPointToReal:xy;
+Reinterpret3DObject2:reinterpretedObject -> MakeList3:1;
+RenderSceneToWindow:requestedFrame -> ShareValue3:value [style=invis];
+RenderSceneToWindow:showedWindow -> ReceiveMouseMoves:window [style=invis];
+Round:rounded -> Reinterpret3DObject2:primitiveType;
+Scale:scaledValue -> Round:real;
+ShareValue3:sameValue -> MakeList5:1;
+}

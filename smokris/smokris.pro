@@ -2,6 +2,9 @@ TEMPLATE = aux
 cache()
 
 NODE_SOURCES += \
+	smokris.make.glitch.image.c \
+	smokris.make.glitch.points.c \
+	smokris.object.reinterpret.c \
 	smokris.snapshot.c
 
 OTHER_FILES += $$NODE_SOURCES

@@ -1,0 +1,20 @@
+/**
+ * @file
+ * This composition does...
+ *
+ * @copyright Copyright © 2016 [smokris](https://vuo.org/user/9)
+ * @see This is a Vuo Composition source code file.  See http://vuo.org for further information.
+ */
+
+digraph G
+{
+MakeGlitchyImage [type="smokris.make.glitch.image" version="1.0.0" label="Make Glitchy Image|<refresh>refresh\l|<width>width\l|<height>height\l|<image>image\r" pos="30,240" fillcolor="violet" _width="1024" _height="768"];
+MakeList3 [type="vuo.list.make.0.VuoWindowProperty" version="2.0.0" label="Make List|<refresh>refresh\l|<list>list\r" pos="199,266" fillcolor="green"];
+RenderImageToWindow [type="vuo.image.render.window" version="3.2.1" label="Render Image to Window|<refresh>refresh\l|<image>image\l|<setWindowProperties>setWindowProperties\l|<showedWindow>showedWindow\r|<requestedFrame>requestedFrame\r" pos="240,240" fillcolor="green" _showedWindow_eventThrottling="enqueue" _requestedFrame_eventThrottling="drop"];
+ShareValue2 [type="vuo.data.share.VuoReal" version="1.0.0" label="Time|<refresh>refresh\l|<value>value\l|<sameValue>sameValue\r" pos="-90,210" fillcolor="green"];
+
+MakeGlitchyImage:image -> RenderImageToWindow:image;
+MakeList3:list -> RenderImageToWindow:setWindowProperties;
+RenderImageToWindow:requestedFrame -> ShareValue2:value [style=invis];
+ShareValue2:sameValue -> MakeGlitchyImage:refresh;
+}

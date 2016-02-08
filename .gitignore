@@ -2,5 +2,4 @@
 .qmake.cache
 .qmake.stash
 Makefile
-*.vuonode
 *.pro.user

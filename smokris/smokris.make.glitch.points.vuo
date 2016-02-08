@@ -1,0 +1,30 @@
+/**
+ * @file
+ * This composition does...
+ *
+ * @copyright Copyright © 2016 [smokris](https://vuo.org/user/9)
+ * @see This is a Vuo Composition source code file.  See http://vuo.org for further information.
+ */
+
+digraph G
+{
+FireOnStart2 [type="vuo.event.fireOnStart" version="1.0.0" label="Fire on Start|<refresh>refresh\l|<started>started\r" pos="-150,315" fillcolor="yellow" _started_eventThrottling="enqueue"];
+Make3DObject [type="vuo.scene.make" version="2.0.0" label="Make 3D Object|<refresh>refresh\l|<mesh>mesh\l|<shader>shader\l|<transform>transform\l|<object>object\r" pos="390,345" _transform="{\"translation\":[-0.5,-0.5,-1],\"eulerRotation\":[0,0,0],\"scale\":[1,1,1]}"];
+MakeGlitchyPoints [type="smokris.make.glitch.points" version="1.0.0" label="Make Glitchy Points|<refresh>refresh\l|<pointCount>pointCount\l|<points>points\r" pos="15,255" fillcolor="violet" _pointCount="128"];
+MakeLineStripMesh2 [type="vuo.mesh.make.lineStrips.VuoPoint3d" version="2.1.0" label="Make Line Strip Mesh|<refresh>refresh\l|<positions>positions\l|<lineWidth>lineWidth\l|<mesh>mesh\r" pos="180,270" _lineWidth="0.01"];
+MakeList4 [type="vuo.list.make.0.VuoWindowProperty" version="2.0.0" label="Make List|<refresh>refresh\l|<list>list\r" pos="559,386" fillcolor="green"];
+MakeList5 [type="vuo.list.make.1.VuoSceneObject" version="2.0.0" label="Make List|<refresh>refresh\l|<1>1\l|<list>list\r" pos="529,356" fillcolor="green"];
+RenderSceneToWindow [type="vuo.scene.render.window" version="2.2.0" label="Render Scene to Window|<refresh>refresh\l|<objects>objects\l|<cameraName>cameraName\l|<setWindowProperties>setWindowProperties\l|<showedWindow>showedWindow\r|<requestedFrame>requestedFrame\r" pos="600,345" fillcolor="green" _showedWindow_eventThrottling="enqueue" _requestedFrame_eventThrottling="drop"];
+ShadeWithVertexAttribute [type="vuo.shader.make.normal" version="1.2.0" label="Shade with Vertex Attribute|<refresh>refresh\l|<attribute>attribute\l|<xColor>xColor\l|<yColor>yColor\l|<zColor>zColor\l|<shader>shader\r" pos="-15,360" _attribute="\"position\"" _xColor="{\"r\":1.0,\"g\":0.0,\"b\":0.0,\"a\":1.0}" _yColor="{\"r\":0.0,\"g\":1.0,\"b\":0.0,\"a\":1.0}" _zColor="{\"r\":0.0,\"g\":0.0,\"b\":1.0,\"a\":1.0}"];
+ShareValue2 [type="vuo.data.share.VuoReal" version="1.0.0" label="Time|<refresh>refresh\l|<value>value\l|<sameValue>sameValue\r" pos="-90,210" fillcolor="green"];
+
+FireOnStart2:started -> ShadeWithVertexAttribute:refresh;
+Make3DObject:object -> MakeList5:1;
+MakeGlitchyPoints:points -> MakeLineStripMesh2:positions;
+MakeLineStripMesh2:mesh -> Make3DObject:mesh;
+MakeList4:list -> RenderSceneToWindow:setWindowProperties;
+MakeList5:list -> RenderSceneToWindow:objects;
+RenderSceneToWindow:requestedFrame -> ShareValue2:value [style=invis];
+ShadeWithVertexAttribute:shader -> Make3DObject:shader;
+ShareValue2:sameValue -> MakeGlitchyPoints:refresh;
+}
