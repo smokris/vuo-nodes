@@ -11,6 +11,6 @@ Copy all the `.vuonode` files into your `~/Library/Application Support/Vuo/Modul
 Node                                        | Output
 ------------------------------------------- | ------------------------------------------------
 ![](smokris/smokris.snapshot.png)           |
-![](smokris/smokris.make.glitch.image.png)  | ![](smokris/smokris.make.glitch.image-output.png)
-![](smokris/smokris.make.glitch.points.png) | ![](smokris/smokris.make.glitch.points-output.png)
-![](smokris/smokris.object.reinterpret.png) | ![](smokris/smokris.object.reinterpret-output.png)
+![](smokris/smokris.make.glitch.image.png)  | <img src="smokris/smokris.make.glitch.image-output.png" width="320">
+![](smokris/smokris.make.glitch.points.png) | <img src="smokris/smokris.make.glitch.points-output.png" width="320">
+![](smokris/smokris.object.reinterpret.png) | <img src="smokris/smokris.object.reinterpret-output.png" width="320">
