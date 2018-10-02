@@ -1,4 +1,5 @@
 # smokris's useless [Vuo](http://vuo.org) nodes
+[![Build Status](https://travis-ci.org/smokris/vuo-nodes.svg?branch=master)](https://travis-ci.org/smokris/vuo-nodes)
 
 These nodes are built for Vuo 1.2.x.  You may need to modify and rebuild them to use them with other Vuo versions.
 
