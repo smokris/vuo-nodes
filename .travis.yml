@@ -4,16 +4,16 @@ language: objective-c
 compiler: clang
 
 before_install:
-    - brew update &> /dev/null \
+    - brew update &> /dev/null
       && travis_wait brew install --force-bottle qt
 script:
-    - curl -OL https://vuo.org/sites/default/files/vuo-1.2.7-editor.zip \
-      && unzip vuo-1.2.7-editor.zip \
-      && cd smokris \
-      && qmake \
+    - curl -OL https://vuo.org/sites/default/files/vuo-1.2.7-editor.zip
+      && unzip vuo-1.2.7-editor.zip
+      && cd smokris
+      && qmake
       && make
 before_deploy:
-    - cd smokris \
+    - cd smokris
       && zip ../smokris-vuo-nodes.zip *.vuonode
 deploy:
     provider: releases
