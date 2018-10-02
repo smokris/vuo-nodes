@@ -13,13 +13,12 @@ script:
       && /usr/local/opt/qt/bin/qmake
       && make
 before_deploy:
-    - pwd && ls -la
-      && zip ../smokris-vuo-nodes.zip *.vuonode
+    - zip ../smokris-vuo-nodes.zip *.vuonode
 deploy:
     provider: releases
     api_key:
         secure: JBpyTIwjbpKpZmni3f+9QlOFFNvP8QvIuir0piZEZBlNqr3YSIMlloTApml5egyeHxdXxleeZZPfUl8YyJJOdg6jKRAJuXoCsDHyEjmGIcArqcS4/pKPqEjV51nKEUSVzA9dAhkzjbebZVBuYVgAynW5PoMn/u0H80SobfYduJRshhe641wqwFThqh+ff8BorNZFTTyG7be45ora8Cafawo2LXPEdAaoIeQX/v0pqGTinPtNoUZukQq2sTZI/YmiHnYK5/DHMLym5SOAOJNSHw73rtYp37gA1c/kCxji6GAsIkaMCSKW5kfqHn/TliwGBZoyR8tWHGVhfrOy39/wkcz/tEP1SmlO0zqnusd7pfX2DOyeLqgOKZag/p/bwXLDqYqyXkFrUVbuAIzwrJxGcKbg4YFJNqpCNB7HfoTxniuKJzXLaIEzQ2FXa7YWZMt8kAk9mR824X+0gu3tu5yNEh/A4KGHSkDZDQo65WcVWpgrEELVjDcL1Hp7ZXkGxrL3NnXrSPGpvaxtZtif755sjnPSSTf1vqzOM1R/1DPvxSbhY+lQ1ysJQJzl96wIQBfBY0jhLHGSu1ToI24bhCqGhFscyxvDunAyInt++xmwC1J8MVxb3q0viCQaLA7AOx6AVe4y1pyZ8SgPq0pTh44JXC+HkVw8b83L857UaDwvGSM=
-    file: smokris-vuo-nodes.zip
+    file: ../smokris-vuo-nodes.zip
     skip_cleanup: true
     on:
         tags: true
