@@ -8,12 +8,12 @@ before_install:
       && travis_wait brew install --force-bottle qt
 script:
     - curl -OL https://vuo.org/sites/default/files/vuo-1.2.7-editor.zip
-      && unzip vuo-1.2.7-editor.zip
+      && unzip -q vuo-1.2.7-editor.zip
       && cd smokris
       && /usr/local/opt/qt/bin/qmake
       && make
 before_deploy:
-    - cd smokris
+    - pwd && ls -la
       && zip ../smokris-vuo-nodes.zip *.vuonode
 deploy:
     provider: releases
