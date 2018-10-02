@@ -4,8 +4,8 @@
 These nodes are built for Vuo 1.2.x.  You may need to modify and rebuild them to use them with other Vuo versions.
 
 ## To install
-
-Copy all the `.vuonode` files into your `~/Library/Application Support/Vuo/Modules` folder.
+   - Go to the [Releases page](https://github.com/smokris/vuo-nodes/releases) and download the latest binary release (not the source code).
+   - Unzip the archive, and copy all the `.vuonode` files into your `~/Library/Application Support/Vuo/Modules` folder.
 
 ## Nodes
 
