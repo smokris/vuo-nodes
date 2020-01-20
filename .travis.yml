@@ -1,24 +1,28 @@
 os: osx
-osx_image: xcode9.4
+osx_image: xcode6.4
 language: objective-c
 compiler: clang
 
-before_install:
-    - brew update &> /dev/null
-      && travis_wait brew install --force-bottle qt
 script:
-    - curl -OL https://vuo.org/sites/default/files/vuo-1.2.7-editor.zip
-      && unzip -q vuo-1.2.7-editor.zip
+    - curl -OL https://vuo.org/sites/default/files/release/vuo-1.2.8-editor.zip
+      && unzip -q vuo-1.2.8-editor.zip
+      && curl -OL https://github.com/smokris/macam64/archive/0.1.0.tar.gz
+      && tar zxf 0.1.0.tar.gz
+      && curl -OL https://github.com/smokris/macam64/releases/download/0.1.0/macam64.zip
+      && unzip macam64.zip
       && cd smokris
-      && /usr/local/opt/qt/bin/qmake
-      && make
+      && mkdir build
+      && cd build
+      && cmake ..
+      && cmake --build .
 before_deploy:
-    - zip ../smokris-vuo-nodes.zip *.vuonode
+    - zip --junk-paths smokris-vuo-nodes.zip smokris.vuonode ../../libmacam64.a
 deploy:
     provider: releases
     api_key:
-        secure: JBpyTIwjbpKpZmni3f+9QlOFFNvP8QvIuir0piZEZBlNqr3YSIMlloTApml5egyeHxdXxleeZZPfUl8YyJJOdg6jKRAJuXoCsDHyEjmGIcArqcS4/pKPqEjV51nKEUSVzA9dAhkzjbebZVBuYVgAynW5PoMn/u0H80SobfYduJRshhe641wqwFThqh+ff8BorNZFTTyG7be45ora8Cafawo2LXPEdAaoIeQX/v0pqGTinPtNoUZukQq2sTZI/YmiHnYK5/DHMLym5SOAOJNSHw73rtYp37gA1c/kCxji6GAsIkaMCSKW5kfqHn/TliwGBZoyR8tWHGVhfrOy39/wkcz/tEP1SmlO0zqnusd7pfX2DOyeLqgOKZag/p/bwXLDqYqyXkFrUVbuAIzwrJxGcKbg4YFJNqpCNB7HfoTxniuKJzXLaIEzQ2FXa7YWZMt8kAk9mR824X+0gu3tu5yNEh/A4KGHSkDZDQo65WcVWpgrEELVjDcL1Hp7ZXkGxrL3NnXrSPGpvaxtZtif755sjnPSSTf1vqzOM1R/1DPvxSbhY+lQ1ysJQJzl96wIQBfBY0jhLHGSu1ToI24bhCqGhFscyxvDunAyInt++xmwC1J8MVxb3q0viCQaLA7AOx6AVe4y1pyZ8SgPq0pTh44JXC+HkVw8b83L857UaDwvGSM=
+        secure: dUnGfkU3ezG9jhza2vwaRjxLRtudeGrkxDrEvV0cytjfw21P12A4/NyPk5qESWc9h6vyGao0a+VU92yyUaTPLPsDoDs6ERMDdL7VyDEfVv0EOaSTSt19+EYhnRHffxd3e4E5117wUSI4xgU7/HlV6f7/K1plRCRnIG9QZBW3yOCYj8fvE4BGJz+N/2sl/KYsd3V8jjjveavLA96gKF/CXThQB6s1F6Oc925lEmLnoM09qx+hl0MLq3Alu7YCa4QadlT/DSa67Vz37gFFU1jRRKxGPZR+Knd2qfSzCHnVuzM7vmbhfh2905Ha0l4roASaMB3HS304uNKcvKUMpPPRpJfrDLeiQ1DuRVsmxZYZEWp3Ef7OVJp4zt79Nc/t36yMkf6gDOgoY+FPLiLPnYeek7dPTPrM8jwVvrJ76GFXGOTtwwodo6AAWmZ7QC3h1V3RsCskp2Ks4jSOvjT2FEjbqxgamiGJAl3e9ykoFk1T54Q0+rySsSeMch9/rWVkwdGuuiTSP4aD9Ok3Exw2EGT5SW8JpH6xCUOi2ES1xuH8ykv5S8iSKiYAde0tXDvMuvs7LGH+h4XzVJLQS1cgMccSKNBN6alrYCwlkbpWcS4UqoqnkqCjNdKeDYYK+RHZucMRthkO08L6RPoCI4LCo4KllShqEo/K/OLzkDTL3oBt8lE=
     file: ../smokris-vuo-nodes.zip
     skip_cleanup: true
     on:
+        repo: smokris/vuo-nodes
         tags: true
