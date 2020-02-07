@@ -21,7 +21,7 @@ deploy:
     provider: releases
     api_key:
         secure: dUnGfkU3ezG9jhza2vwaRjxLRtudeGrkxDrEvV0cytjfw21P12A4/NyPk5qESWc9h6vyGao0a+VU92yyUaTPLPsDoDs6ERMDdL7VyDEfVv0EOaSTSt19+EYhnRHffxd3e4E5117wUSI4xgU7/HlV6f7/K1plRCRnIG9QZBW3yOCYj8fvE4BGJz+N/2sl/KYsd3V8jjjveavLA96gKF/CXThQB6s1F6Oc925lEmLnoM09qx+hl0MLq3Alu7YCa4QadlT/DSa67Vz37gFFU1jRRKxGPZR+Knd2qfSzCHnVuzM7vmbhfh2905Ha0l4roASaMB3HS304uNKcvKUMpPPRpJfrDLeiQ1DuRVsmxZYZEWp3Ef7OVJp4zt79Nc/t36yMkf6gDOgoY+FPLiLPnYeek7dPTPrM8jwVvrJ76GFXGOTtwwodo6AAWmZ7QC3h1V3RsCskp2Ks4jSOvjT2FEjbqxgamiGJAl3e9ykoFk1T54Q0+rySsSeMch9/rWVkwdGuuiTSP4aD9Ok3Exw2EGT5SW8JpH6xCUOi2ES1xuH8ykv5S8iSKiYAde0tXDvMuvs7LGH+h4XzVJLQS1cgMccSKNBN6alrYCwlkbpWcS4UqoqnkqCjNdKeDYYK+RHZucMRthkO08L6RPoCI4LCo4KllShqEo/K/OLzkDTL3oBt8lE=
-    file: ../smokris-vuo-nodes.zip
+    file: smokris-vuo-nodes.zip
     skip_cleanup: true
     on:
         repo: smokris/vuo-nodes
